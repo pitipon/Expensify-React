@@ -3,10 +3,10 @@ html {
 }
 
 body {
-    background: $dark-blue;
+    // background: $dark-blue;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
-    color: $off-white;
+    // color: $off-white;
 }
 
 button {
@@ -15,4 +15,8 @@ button {
 
 button:disabled {
     cursor: default;
+}
+
+.is-active {
+    border: 1px solid $dark-blue;
 }
