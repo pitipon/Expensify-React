@@ -1,1 +1,6 @@
-# Indecision-React
+# Boilerplate-Webpack-React
+
+- React
+- Webpack
+- Scss
+
