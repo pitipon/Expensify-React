@@ -43,9 +43,6 @@ store.dispatch(
     })
 )
 
-store.dispatch(
-    setTextFilter('bill')
-)
 
 const jsx = (
     <Provider store={store}>
