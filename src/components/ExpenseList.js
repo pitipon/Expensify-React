@@ -1,33 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addExpense, editExpense, removeExpense } from '../actions/expenses';
+import ExpenseListItem from './ExpenseListItem';
+import selectExpenses from '../selectors/expenses';
+
 
 const ExpenseList = (props) => (
     <div>
         <h1>Expense List</h1>
-        {props.filter.text}
-        {props.expenses.length}
+        {
+            props.expenses.map((expense) => (
+                <ExpenseListItem {...expense} key={expense.id}/>            
+            ))
+        }
     </div>
 );
 
 const mapStateToProps = (state) => {
     console.log(44, state)
     return {
-        expenses: state.expenses,
-        filter: state.filter
+        expenses: selectExpenses(state.expenses, state.filter)
     }
 }
 
-const mapDispatchToProps = {
-    addExpense,
-    editExpense,
-    removeExpense
-};
 
 // Enchance component with redux
 const ConnectedExpenseList = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(ExpenseList);
 
 export default ConnectedExpenseList;
