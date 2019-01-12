@@ -162,14 +162,9 @@ const filterReducer = (state = defaultFilterReducer, action) => {
     }
 }
 
-
-
 // 
-// INIT & SUBSCRIBE & DISPATCH
+// Selector
 // 
-
-
-
 
 // get visible expenses
 const getVisibleExpenses = (expenses, filter) => {
@@ -189,6 +184,16 @@ const getVisibleExpenses = (expenses, filter) => {
         }
     })
 }
+
+
+// 
+// INIT & SUBSCRIBE & DISPATCH
+// 
+
+
+
+
+
 
 // Store creation
 const store = createStore(
@@ -225,24 +230,24 @@ store.dispatch(
     })
 )
 
-// let expenses = store.getState().expenses;
+let expenses = store.getState().expenses;
 
-// store.dispatch(
-//     editExpense(
-//         expenses[0].id,
-//         { amount: 500 }
-//     )
-// )
+store.dispatch(
+    editExpense(
+        expenses[0].id,
+        { amount: 500 }
+    )
+)
 
-// store.dispatch( setTextFilter('rent') )
+store.dispatch( setTextFilter('rent') )
 
 store.dispatch( sortByAmount() )
 
-// store.dispatch( sortByDate() )
+store.dispatch( sortByDate() )
 
-// store.dispatch( setStartDate(125) ) // 125
+store.dispatch( setStartDate(125) ) // 125
 
-// store.dispatch( setStartDate() ) // undefined
+store.dispatch( setStartDate() ) // undefined
 
-// store.dispatch( setEndDate(1250) ) // 1250
+store.dispatch( setEndDate(1250) ) // 1250
 
