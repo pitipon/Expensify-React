@@ -8,13 +8,19 @@ console.log(now.format('MMM Do, YYYY'));
 
 class ExpenseForm extends React.Component {
 
-    state = {
-        description: '',
-        note: '',
-        amount: '',
-        createdAt: moment(),
-        calendarFocused: false,
-        error: ''
+    constructor(props) {
+        super(props);
+
+        let expense = props.expense;
+
+        this.state = {
+            description: expense ? expense.description : '',
+            note: expense ? expense.note : '',
+            amount: expense ? expense.amount : '',
+            createdAt: expense ? moment(expense.createdAt) : moment(),
+            calendarFocused: false,
+            error: ''
+        }
     }
 
     onDescriptionChange = (e) => {
@@ -100,7 +106,7 @@ class ExpenseForm extends React.Component {
                         value={this.state.note}
                         onChange={this.onNoteChange}
                     ></textarea>
-                    <button type='submit'>Add Expense</button>
+                    <button type='submit'>Submit</button>
                 </form>
             </div>
         )
