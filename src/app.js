@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import { Provider } from 'react-redux';
 // Redux store
 import configStore from './store/config';
@@ -15,6 +15,7 @@ import './styles/style.scss'
 import 'react-dates/lib/css/_datepicker.css';
 // Firebase
 import { firebase } from './firebase/firebase';
+
 
 
 // create redux store
@@ -48,6 +49,7 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log('log in')
     } else {
-        console.log('log out')
+        console.log('log out');
+        history.push('/');
     }
 })
