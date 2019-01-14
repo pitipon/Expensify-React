@@ -67,3 +67,15 @@ test('should sort by amount', () => {
 
     expect(result).toEqual([expenses[1], expenses[2], expenses[0]]);
 })
+
+test('should not filter with zero expenses', () => {
+    const filter = {
+        text: '',
+        sortBy: 'date',
+        startDate: undefined,
+        endDate: undefined
+    }
+
+    const result = selectExpenses([], filter);
+    expect(result).toEqual([]);
+})
