@@ -1,10 +1,6 @@
-# Boilerplate-Webpack-React
+# Expensify App
 
-### Included
-- React
-- Webpack
-- Scss
-- Normalize.js
+- Record your expense everyday
 
 ### Usage
 
@@ -19,9 +15,14 @@ Run dev-server
     yarn run dev-server
 ```
 
-Build 
+Build dev
 ```
-    yarn run build
+    yarn run build:dev
+```
+
+Build production
+```
+    yarn run build:prod
 ```
 
 Run Build

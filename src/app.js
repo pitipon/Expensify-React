@@ -12,6 +12,7 @@ import getVisibleExpenses from './selectors/expenses';
 // style
 import 'normalize.css/normalize.css';
 import './styles/style.scss'
+import 'react-dates/lib/css/_datepicker.css';
 
 
 // create redux store
@@ -22,26 +23,8 @@ console.log(store.getState());
 const unsubscribe = store.subscribe(() => {
     const state = store.getState();
     const visibleExpenses = getVisibleExpenses(state.expenses, state.filter);
-    console.log(444,visibleExpenses);
+    console.log(444,visibleExpenses);   
 })
-
-
-// dispatch
-store.dispatch( 
-    addExpense({
-        description: 'Water bill',
-        amount: 100,
-        createdAt: 100
-    }) 
-);
-
-store.dispatch(
-    addExpense({
-        description: 'Gas bill',
-        amount: 200,
-        createdAt: 1
-    })
-)
 
 
 const jsx = (
