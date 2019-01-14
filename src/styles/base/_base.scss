@@ -1,22 +1,27 @@
-html {
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
     font-size: 62.5%;
-}
-
-body {
-    // background: $dark-blue;
+  }
+  
+  body {
+    color: $dark-grey;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 1.6rem;
-    // color: $off-white;
-}
-
-button {
+    font-size: $m-size;
+    line-height: 1.6;
+  }
+  
+  button {
     cursor: pointer;
-}
-
-button:disabled {
+  }
+  
+  button:disabled {
     cursor: default;
-}
-
-.is-active {
-    border: 1px solid $dark-blue;
-}
+  }
+  
+  .is-active {
+    font-weight: bold;
+  }
+  
