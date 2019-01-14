@@ -8,29 +8,39 @@ const ExpenseEditPage = (props) => {
     
     return (
         <div>
-            <ExpenseForm
-                expense={props.expense}
-                onSubmit={ (expense) => {
-                    console.log('updated ',expense)
+            <div className="page-header">
+                <div className="content-container">
+                    <h1 className="page-header__title">Edit Expense</h1>
+                </div>
+            </div>
+            <div className="content-container" >
+                <ExpenseForm
+                    expense={props.expense}
+                    onSubmit={ (expense) => {
+                        console.log('updated ',expense)
 
-                    // Dispatch editExpense
-                    props.dispatch(
-                        startEditExpense(props.expense.id, expense)
-                    );
+                        // Dispatch editExpense
+                        props.dispatch(
+                            startEditExpense(props.expense.id, expense)
+                        );
 
-                    // Back to Dashboard
-                    props.history.push('/');
-                }}
-            />
-            <button 
-                onClick={() => {
-                    console.log('remove', props.expense)
-                    // Dispatch startRemoveExpense
-                    props.dispatch(startRemoveExpense({id : props.expense.id}))
-                    // Back to Dashboard
-                    props.history.push('/');
-                }}
-            >Remove</button>
+                        // Back to Dashboard
+                        props.history.push('/');
+                    }}
+                />
+                <button 
+                    className="button button--secondary"
+                    onClick={() => {
+                        console.log('remove', props.expense)
+                        // Dispatch startRemoveExpense
+                        props.dispatch(startRemoveExpense({id : props.expense.id}))
+                        // Back to Dashboard
+                        props.history.push('/');
+                    }}
+                >Remove</button>
+
+            </div>
+            
         </div>
     )
 }
