@@ -38,6 +38,16 @@ const removeExpense = ({ id } = {}) => ({
     id
 })
 
+const startRemoveExpense = ({ id } = {}) => {
+    console.log(id)
+    return (dispatch) => {
+        database.ref(`expenses/${id}`).remove()
+            .then( () => {
+                dispatch(removeExpense({ id }));
+            })
+    }
+}
+
 // EDIT_EXPENSE
 const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
@@ -74,7 +84,7 @@ const startSetExpenses = () => {
 
 module.exports = {
     startAddExpense,
-    removeExpense,
+    startRemoveExpense,
     editExpense,
     startSetExpenses
 }
