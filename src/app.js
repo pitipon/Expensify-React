@@ -36,20 +36,34 @@ const jsx = (
     </Provider>
 )
 
+// Function to render jsx
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        hasRendered = true;
+    }
+}
 
-
+// Loading Page
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
-})
 
 // AUTH
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log('log in')
+        console.log('log in');
+        // Fetch all expense from Firebase
+        store.dispatch(startSetExpenses()).then(() => {
+           renderApp();
+           // change root path to /dashboard when already logined
+           if (history.location.pathname === '/') {
+               history.push('/dashboard');
+           }
+        })
     } else {
         console.log('log out');
+        renderApp();
         history.push('/');
     }
 })
