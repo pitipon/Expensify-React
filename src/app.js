@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import configStore from './store/config';
 // Redux actions
 import { startSetExpenses } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
+import { login, logout } from './actions/auth';
 // Redux selectors
 import getVisibleExpenses from './selectors/expenses';
 // style
@@ -53,7 +53,9 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log('log in');
-        // Fetch all expense from Firebase
+        // Dispatch LOGIN
+        store.dispatch(login(user.uid));
+        // Fetch all expense from Firebase and Dispatch SET_EXPENSES
         store.dispatch(startSetExpenses()).then(() => {
            renderApp();
            // change root path to /dashboard when already logined
@@ -63,6 +65,9 @@ firebase.auth().onAuthStateChanged((user) => {
         })
     } else {
         console.log('log out');
+        // Dispatch LOGOUT
+        store.dispatch(logout());
+        // Push back to loginPage
         renderApp();
         history.push('/');
     }

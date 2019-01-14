@@ -1,16 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import expenseReducer from '../reducers/expenses';
 import filterReducer from '../reducers/filters';
-import thunk from 'redux-thunk';
+import authReducer from '../reducers/auth';
 
-const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSTION_COMPOSE__ || compose;
+const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
     // Store creation
     const store = createStore(
         combineReducers({
             expenses: expenseReducer,
-            filter: filterReducer
+            filter: filterReducer,
+            auth: authReducer
         }),
         composeEnchancers(applyMiddleware(thunk))
         // redux dev tool
