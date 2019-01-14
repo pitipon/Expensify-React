@@ -15,6 +15,8 @@ import './styles/style.scss'
 import 'react-dates/lib/css/_datepicker.css';
 // Firebase
 import { firebase } from './firebase/firebase';
+// LoadingPage
+import LoadingPage from './pages/LoadingPage';
 
 
 
@@ -46,7 +48,7 @@ const renderApp = () => {
 }
 
 // Loading Page
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
 // AUTH
