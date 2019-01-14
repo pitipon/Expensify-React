@@ -1,7 +1,7 @@
 import React from 'react';
 import ExpenseForm from '../components/ExpenseForm';
 import { connect } from 'react-redux';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
 const ExpenseAddPage = (props) => (
     <div>
@@ -11,7 +11,7 @@ const ExpenseAddPage = (props) => (
                 console.log(expense);
                 // Dispatch addExpense
                 props.dispatch(
-                    addExpense(expense)
+                    startAddExpense(expense)
                 );
                 // Change to Dashboard page
                 props.history.push('/');
