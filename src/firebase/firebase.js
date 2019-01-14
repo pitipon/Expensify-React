@@ -9,16 +9,12 @@ const config = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
 
-// var config = {
-//     apiKey: "AIzaSyBcFqf3Zor0uewOgCiC4fW-KjTORZd3X70",
-//     authDomain: "expensify-6cb80.firebaseapp.com",
-//     databaseURL: "https://expensify-6cb80.firebaseio.com",
-//     projectId: "expensify-6cb80",
-//     storageBucket: "expensify-6cb80.appspot.com",
-//     messagingSenderId: "741507076406"
-//   };
+  // setup Firebase DB
   firebase.initializeApp(config);
-
   const database = firebase.database();
+  
+  // setup Auth Google
+  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-  export { firebase, database as default };
+
+  export { firebase, googleAuthProvider, database as default };
