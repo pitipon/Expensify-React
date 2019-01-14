@@ -13,7 +13,8 @@ const addExpense = (expense) => ({
 })
 
 const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const {
             description = '', 
             note = '', 
@@ -21,7 +22,8 @@ const startAddExpense = (expenseData = {}) => {
             createdAt= 0
         } = expenseData;
         const expense = { description, note, amount, createdAt };
-        database.ref('expenses').push(expense)
+
+        return database.ref(`users/${uid}/expenses`).push(expense)
             .then( ref => {
                 dispatch(addExpense({
                     id: ref.key,
@@ -40,8 +42,9 @@ const removeExpense = ({ id } = {}) => ({
 
 const startRemoveExpense = ({ id } = {}) => {
     console.log(id)
-    return (dispatch) => {
-        database.ref(`expenses/${id}`).remove()
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        database.ref(`user/${uid}/expenses/${id}`).remove()
             .then( () => {
                 dispatch(removeExpense({ id }));
             })
@@ -56,9 +59,10 @@ const editExpense = (id, updates) => ({
 })
 
 const startEditExpense = (id, updates) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         console.log(33, dispatch)
-        return database.ref(`expenses/${id}`).update(updates)
+        return database.ref(`user/${uid}/expenses/${id}`).update(updates)
                     .then(() => {
                         dispatch(editExpense(id, updates));
                     })
@@ -74,8 +78,9 @@ const setExpenses = (expenses) => ({
 })
 
 const startSetExpenses = () => {
-    return (dispatch) => {
-        return database.ref('expenses').once('value').then((snapshot) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
             const expenses = [];
             // console.log(555,snapshot)
 
